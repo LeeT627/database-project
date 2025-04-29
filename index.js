@@ -1,15 +1,11 @@
 const express = require('express');
-const { fileURLToPath } = require('url');
-const { dirname, join } = require('path');
+const path = require('path');
 const dotenv = require('dotenv');
 const { createClient } = require('@supabase/supabase-js');
 const cheerio = require('cheerio');
 const fetch = require('node-fetch');
 
 dotenv.config();
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -23,7 +19,7 @@ const supabase = createClient(supabaseUrl, supabaseAnonKey);
 app.use(express.json());
 
 // Serve static files from the public directory
-app.use(express.static(join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Handle favicon.ico requests
 app.get('/favicon.ico', (req, res) => {
@@ -80,7 +76,7 @@ app.get('/api/lotto645', async (req, res) => {
 
 // Serve index.html for all other routes
 app.get('*', (req, res) => {
-  res.sendFile(join(__dirname, 'public', 'index.html'));
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 // Add error handling middleware
