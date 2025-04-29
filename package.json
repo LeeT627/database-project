@@ -2,7 +2,7 @@
   "name": "database-project",
   "version": "1.0.0",
   "description": "Project with Supabase integration",
-  "type": "module",
+  "type": "commonjs",
   "main": "index.js",
   "engines": {
     "node": ">=18.0.0"

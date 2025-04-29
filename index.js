@@ -1,10 +1,10 @@
-import express from 'express';
-import { fileURLToPath } from 'url';
-import { dirname, join } from 'path';
-import dotenv from 'dotenv';
-import { createClient } from '@supabase/supabase-js';
-import cheerio from 'cheerio';
-import fetch from 'node-fetch';
+const express = require('express');
+const { fileURLToPath } = require('url');
+const { dirname, join } = require('path');
+const dotenv = require('dotenv');
+const { createClient } = require('@supabase/supabase-js');
+const cheerio = require('cheerio');
+const fetch = require('node-fetch');
 
 dotenv.config();
 
