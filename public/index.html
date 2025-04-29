@@ -84,7 +84,7 @@
         .rocket-panel {
             position: absolute;
             top: 62%; /* Adjust as needed for vertical alignment */
-            right: -90px; /* Overlap the right edge */
+            right: 0px; /* Move rocket leftwards */
             margin: 0;
             width: 160px;
             height: 220px;
@@ -101,10 +101,16 @@
             transition: box-shadow 0.3s, transform 0.3s;
             transform: rotate(25deg);
         }
+        @keyframes vibrate {
+            0% { transform: rotate(25deg) translateX(0); }
+            20% { transform: rotate(25deg) translateX(-2px); }
+            40% { transform: rotate(25deg) translateX(2px); }
+            60% { transform: rotate(25deg) translateX(-2px); }
+            80% { transform: rotate(25deg) translateX(2px); }
+            100% { transform: rotate(25deg) translateX(0); }
+        }
         .rocket-panel:hover {
-            box-shadow: 0 8px 32px rgba(231,76,60,0.25);
-            transform: translateY(-8px) scale(1.03);
-            background: linear-gradient(to bottom, #ffeaea 80%, #ffd966 100%);
+            animation: vibrate 0.3s linear infinite;
         }
         .rocket-window {
             position: absolute;
