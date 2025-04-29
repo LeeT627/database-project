@@ -80,6 +80,55 @@
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
+        .rocket-panel {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid #e74c3c;
+            text-align: center;
+            z-index: 1000;
+        }
+        .rocket-panel::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-bottom: 20px solid #e74c3c;
+        }
+        .rocket-panel::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 15px solid #e74c3c;
+        }
+        .rocket-panel:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            background-color: #e74c3c;
+            color: white;
+        }
+        .rocket-text {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0;
+        }
     </style>
 </head>
 <body>
@@ -104,5 +153,15 @@
         </div>
         <a href="/history.html" class="history-button">📋 Winning Numbers History</a>
     </div>
+    <div class="rocket-panel" onclick="redirectToRandomLottery()">
+        <p class="rocket-text">화성행 로켓 탑승</p>
+    </div>
+    <script>
+        function redirectToRandomLottery() {
+            const lotteries = ['/lotto645.html', '/powerball.html', '/megamillions.html'];
+            const randomIndex = Math.floor(Math.random() * lotteries.length);
+            window.location.href = lotteries[randomIndex];
+        }
+    </script>
 </body>
 </html> 
