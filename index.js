@@ -19,6 +19,9 @@ const supabaseUrl = 'https://klwnaivbyaxrwpdstsli.supabase.co';
 const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imtsd25haXZieWF4cndwZHN0c2xpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDU4MjA3ODcsImV4cCI6MjA2MTM5Njc4N30.CfMciBUdAc_VaPQ18s2DdsEkCwN0ufvwYvxTNnrN2tk';
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
+// Parse JSON bodies
+app.use(express.json());
+
 // Serve static files from the public directory
 app.use(express.static(join(__dirname, 'public')));
 
@@ -27,11 +30,7 @@ app.get('/favicon.ico', (req, res) => {
   res.status(204).end();
 });
 
-// Parse JSON bodies
-app.use(express.json());
-
 // Add your API routes here
-// Example:
 app.get('/api/test', async (req, res) => {
   res.json({ message: 'API is working!' });
 });
@@ -79,6 +78,11 @@ app.get('/api/lotto645', async (req, res) => {
   }
 });
 
+// Serve index.html for all other routes
+app.get('*', (req, res) => {
+  res.sendFile(join(__dirname, 'public', 'index.html'));
+});
+
 // Add error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
@@ -89,11 +93,10 @@ app.use((err, req, res, next) => {
   });
 });
 
-// Serve index.html for all other routes
-app.get('*', (req, res) => {
-  res.sendFile(join(__dirname, 'public', 'index.html'));
-});
+if (require.main === module) {
+  app.listen(port, () => {
+    console.log(`Server running at http://localhost:${port}`);
+  });
+}
 
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
-}); 
+module.exports = app; 
