@@ -81,53 +81,69 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         .rocket-panel {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: relative;
+            margin: 40px auto 0 auto;
+            width: 160px;
+            height: 220px;
+            background: linear-gradient(to bottom, #fff 80%, #ffe066 100%);
+            border-radius: 80px 80px 60px 60px / 100px 100px 80px 80px;
+            border: 6px solid #e74c3c;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
             cursor: pointer;
-            transition: all 0.3s ease;
-            border: 2px solid #e74c3c;
-            text-align: center;
-            z-index: 1000;
-        }
-        .rocket-panel::before {
-            content: '';
-            position: absolute;
-            top: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 0;
-            border-left: 15px solid transparent;
-            border-right: 15px solid transparent;
-            border-bottom: 20px solid #e74c3c;
-        }
-        .rocket-panel::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 0;
-            border-left: 10px solid transparent;
-            border-right: 10px solid transparent;
-            border-top: 15px solid #e74c3c;
+            z-index: 1;
+            transition: box-shadow 0.3s, transform 0.3s;
         }
         .rocket-panel:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            background-color: #e74c3c;
-            color: white;
+            box-shadow: 0 8px 32px rgba(231,76,60,0.25);
+            transform: translateY(-8px) scale(1.03);
+            background: linear-gradient(to bottom, #ffeaea 80%, #ffd966 100%);
+        }
+        .rocket-window {
+            position: absolute;
+            top: 36px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 48px;
+            height: 48px;
+            background: radial-gradient(circle at 60% 40%, #aee6ff 60%, #3498db 100%);
+            border-radius: 50%;
+            border: 4px solid #2980b9;
+            box-shadow: 0 2px 8px rgba(52,152,219,0.15);
+        }
+        .rocket-flame {
+            position: absolute;
+            bottom: -36px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 60px;
+            background: none;
+        }
+        .rocket-flame-shape {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 60px;
+            background: none;
+        }
+        .rocket-flame-shape svg {
+            width: 40px;
+            height: 60px;
+            display: block;
         }
         .rocket-text {
-            font-size: 24px;
+            font-size: 20px;
             font-weight: bold;
-            margin: 0;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            margin-top: 120px;
+            z-index: 2;
+            text-align: center;
         }
     </style>
 </head>
@@ -151,10 +167,23 @@
                 <div class="lottery-description">5 numbers + 1 Mega Ball</div>
             </a>
         </div>
+        <div class="rocket-panel" onclick="redirectToRandomLottery()">
+            <div class="rocket-window"></div>
+            <div class="rocket-text">화성행 로켓 탑승</div>
+            <div class="rocket-flame rocket-flame-shape">
+                <svg viewBox="0 0 40 60">
+                    <defs>
+                        <radialGradient id="flameGradient" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" stop-color="#fff700"/>
+                            <stop offset="60%" stop-color="#ffb300"/>
+                            <stop offset="100%" stop-color="#ff5e00"/>
+                        </radialGradient>
+                    </defs>
+                    <path d="M20 0 Q30 20 20 60 Q10 20 20 0 Z" fill="url(#flameGradient)"/>
+                </svg>
+            </div>
+        </div>
         <a href="/history.html" class="history-button">📋 Winning Numbers History</a>
-    </div>
-    <div class="rocket-panel" onclick="redirectToRandomLottery()">
-        <p class="rocket-text">화성행 로켓 탑승</p>
     </div>
     <script>
         function redirectToRandomLottery() {
