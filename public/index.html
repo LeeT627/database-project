@@ -96,6 +96,7 @@
             cursor: pointer;
             z-index: 1;
             transition: box-shadow 0.3s, transform 0.3s;
+            transform: rotate(25deg);
         }
         .rocket-panel:hover {
             box-shadow: 0 8px 32px rgba(231,76,60,0.25);
@@ -116,24 +117,24 @@
         }
         .rocket-flame {
             position: absolute;
-            bottom: -36px;
+            bottom: -60px;
             left: 50%;
             transform: translateX(-50%);
-            width: 40px;
-            height: 60px;
+            width: 80px;
+            height: 120px;
             background: none;
         }
         .rocket-flame-shape {
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
-            width: 40px;
-            height: 60px;
+            width: 80px;
+            height: 120px;
             background: none;
         }
         .rocket-flame-shape svg {
-            width: 40px;
-            height: 60px;
+            width: 80px;
+            height: 120px;
             display: block;
         }
         .rocket-text {
@@ -171,7 +172,7 @@
             <div class="rocket-window"></div>
             <div class="rocket-text">화성행 로켓 탑승</div>
             <div class="rocket-flame rocket-flame-shape">
-                <svg viewBox="0 0 40 60">
+                <svg viewBox="0 0 80 120">
                     <defs>
                         <radialGradient id="flameGradient" cx="50%" cy="50%" r="50%">
                             <stop offset="0%" stop-color="#fff700"/>
@@ -179,7 +180,7 @@
                             <stop offset="100%" stop-color="#ff5e00"/>
                         </radialGradient>
                     </defs>
-                    <path d="M20 0 Q30 20 20 60 Q10 20 20 0 Z" fill="url(#flameGradient)"/>
+                    <path d="M40 0 Q60 40 40 120 Q20 40 40 0 Z" fill="url(#flameGradient)"/>
                 </svg>
             </div>
         </div>
