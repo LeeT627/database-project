@@ -18,6 +18,7 @@
             border-radius: 10px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             text-align: center;
+            position: relative;
         }
         h1 {
             color: #2c3e50;
@@ -81,8 +82,10 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         .rocket-panel {
-            position: relative;
-            margin: 40px auto 0 auto;
+            position: absolute;
+            top: 62%; /* Adjust as needed for vertical alignment */
+            right: -90px; /* Overlap the right edge */
+            margin: 0;
             width: 160px;
             height: 220px;
             background: linear-gradient(to bottom, #fff 80%, #ffe066 100%);
@@ -94,7 +97,7 @@
             align-items: center;
             justify-content: flex-end;
             cursor: pointer;
-            z-index: 1;
+            z-index: 10;
             transition: box-shadow 0.3s, transform 0.3s;
             transform: rotate(25deg);
         }
