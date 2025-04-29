@@ -3,7 +3,7 @@ async function testConnection() {
     try {
         console.log('Testing Supabase connection...')
         const { data, error } = await window.supabaseClient
-            .from('lottery_numbers')
+            .from('lotto_645_numbers')
             .select('*')
             .limit(1)
         
@@ -25,7 +25,7 @@ async function fetchNumbers() {
     try {
         console.log('Fetching numbers from database...')
         const { data, error } = await window.supabaseClient
-            .from('lottery_numbers')
+            .from('lotto_645_numbers')
             .select('num1, num2, num3, num4, num5, num6')
             .order('id', { ascending: false })
             .limit(1)
@@ -68,7 +68,7 @@ async function saveNumbers(numbers) {
         console.log('Attempting to save numbers:', { num1, num2, num3, num4, num5, num6 })
         
         const { data, error } = await window.supabaseClient
-            .from('lottery_numbers')
+            .from('lotto_645_numbers')
             .insert([
                 {
                     num1: parseInt(num1),
@@ -76,11 +76,9 @@ async function saveNumbers(numbers) {
                     num3: parseInt(num3),
                     num4: parseInt(num4),
                     num5: parseInt(num5),
-                    num6: parseInt(num6),
-                    lottery_type: 'lotto645'
+                    num6: parseInt(num6)
                 }
             ])
-            .select()
         
         if (error) {
             console.error('Supabase error details:', error)
@@ -119,7 +117,13 @@ async function generateNumbers() {
         displayNumbers(newNumbers)
     } catch (error) {
         console.error('Error:', error)
-        alert('An error occurred while generating numbers. Please try again.')
+        if (error.message.includes('permission denied')) {
+            alert('Database permission error. Please check if the database is properly configured.')
+        } else if (error.message.includes('network')) {
+            alert('Network error. Please check your internet connection.')
+        } else {
+            alert('An error occurred while generating numbers. Please try again.')
+        }
     }
 }
 
