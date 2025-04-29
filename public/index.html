@@ -95,7 +95,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-end;
+            justify-content: center;
             cursor: pointer;
             z-index: 10;
             transition: box-shadow 0.3s, transform 0.3s;
@@ -144,9 +144,18 @@
             font-size: 20px;
             font-weight: bold;
             color: #2c3e50;
-            margin-bottom: 30px;
-            margin-top: 120px;
-            z-index: 2;
+            margin: 0;
+            text-align: center;
+            position: relative;
+            top: 0;
+            left: 0;
+            transform: none;
+        }
+        .rocket-go {
+            font-size: 28px;
+            font-weight: bold;
+            color: #e74c3c;
+            margin-top: 10px;
             text-align: center;
         }
     </style>
@@ -173,7 +182,10 @@
         </div>
         <div class="rocket-panel" onclick="redirectToRandomLottery()">
             <div class="rocket-window"></div>
-            <div class="rocket-text">화성행 로켓 탑승</div>
+            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; width: 100%;">
+                <div class="rocket-text">화성행 로켓 탑승</div>
+                <div class="rocket-go">GO!</div>
+            </div>
             <div class="rocket-flame rocket-flame-shape">
                 <svg viewBox="0 0 80 120">
                     <defs>
@@ -187,7 +199,7 @@
                 </svg>
             </div>
         </div>
-        <a href="/history.html" class="history-button">📋 Winning Numbers History</a>
+        <a href="/history.html" class="history-button">역대 당첨 번호</a>
     </div>
     <script>
         function redirectToRandomLottery() {
